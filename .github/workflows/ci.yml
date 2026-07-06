@@ -1,0 +1,22 @@
+name: ci.yml
+on:
+  push:
+  pull_request:
+    branches:
+      - main
+      - develop
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: 25
+          distribution: 'temurin'
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+      - name: Build
+        run: sbt check
