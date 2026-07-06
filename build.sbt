@@ -1,14 +1,15 @@
 ThisBuild / scalaVersion := "3.8.1"
 
-import Dependencies.*
+lazy val commonSettings = Seq(
+  scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all"),
+  wartremoverErrors ++= Warts.unsafe.filterNot(_ == Wart.Var),
+  libraryDependencies ++= Dependencies.testing
+)
 
 lazy val root = (project in file("."))
   .settings(
     name := "scala3-template",
-    libraryDependencies ++= Seq(
-      scalaTest
-    ),
-    wartremoverErrors ++= Warts.unsafe.filterNot(_ == Wart.Var)
+    commonSettings
   )
 
 /*
