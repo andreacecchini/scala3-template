@@ -1,7 +1,12 @@
 /*
+ * Scalafmt
+ *
+ */
+addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.6.1")
+/*
  * Wartremover
  */
-addSbtPlugin("org.wartremover" %% "sbt-wartremover" % "3.5.7")
+addSbtPlugin("org.wartremover" % "sbt-wartremover" % "3.5.7")
 /*
  * Sbt-assembly
  */
