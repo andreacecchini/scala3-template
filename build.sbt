@@ -7,5 +7,6 @@ lazy val root = (project in file("."))
     name := "scala3-template",
     libraryDependencies ++= Seq(
       scalaTest,
-    )
+    ),
+    wartremoverErrors ++= Warts.unsafe.filterNot(_ == Wart.Var)
   )
