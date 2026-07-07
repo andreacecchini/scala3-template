@@ -22,3 +22,23 @@ lazy val root = (project in file("."))
       case _                        => MergeStrategy.first
     }
   )
+/*
+ * Run static and dynamic analisys...
+ */
+addCommandAlias("check", "; fmtCheck; test")
+/*
+ * Run the entirely build lifecycle...
+ */
+addCommandAlias("build", "; fmtCheck; assembly; doc")
+/*
+ * As build, but bypassing sbt machine level cache...
+ */
+addCommandAlias("buildFull", "; cleanFull; build")
+/*
+ * Format...
+ */
+addCommandAlias("fmt", "; scalafmtAll; scalafmtSbt")
+/*
+ * Check format...
+ */
+addCommandAlias("fmtCheck", "; scalafmtCheckAll; scalafmtSbtCheck")
