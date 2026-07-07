@@ -25,7 +25,7 @@ addCommandAlias("check", "; clean; fmtCheck; testFull")
 /*
  * Command alias to build the project.
  */
-addCommandAlias("build", "clean; scalafmtCheckAll; compile; test")
+addCommandAlias("build", "clean; scalafmtCheckAll; compile; test; doc")
 /*
  * Command alias to apply format.
  */
