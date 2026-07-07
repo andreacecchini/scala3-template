@@ -12,6 +12,10 @@ lazy val commonSettings = Seq(
   libraryDependencies ++= Dependencies.testing
 )
 
+jacocoExcludes := Seq(
+  "Main*"
+)
+
 lazy val root = (project in file("."))
   .settings(
     name := "scala3-template",

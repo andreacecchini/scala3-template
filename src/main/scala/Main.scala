@@ -7,11 +7,11 @@ object Main:
 
   /** Greet who runs the program.
     */
-  val greetingMessage: String = s"Welcome to $projectName"
+  def greetingMessage: String = s"Welcome to $projectName"
 
   /** This method is the entry point of the program.
     * @param args
     *   unused
     */
-  def main(args: Array[String]): Unit =
-    println(f"Welcome to $projectName!")
+  def main(args: Array[String]): Unit = println:
+    greetingMessage

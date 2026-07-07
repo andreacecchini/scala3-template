@@ -9,3 +9,6 @@ class MainSuite extends AnyFlatSpec with Matchers:
 
   it should "greet the user" in:
     Main.greetingMessage shouldBe s"Welcome to ${Main.projectName}"
+
+  it should "have a main" in:
+    "Main.main(Array.empty)" should compile
