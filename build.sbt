@@ -1,13 +1,23 @@
 /*
- * "Bare" global settings, applied to all subprojects...
+ * Project configuration...
  */
 scalaVersion := "3.8.1"
+version := "0.0.0-SNAPSHOT"
+/*
+ * Static analisys configuration...
+ */
 scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all")
 wartremoverErrors ++= {
   val excluded = Set(Wart.Var, Wart.Any)
   Warts.unsafe.filterNot(excluded.contains)
 }
+/*
+ * Jacoco configuration...
+ */
 jacocoExcludes := Seq("Main*")
+/*
+ * Common libraries between subprojects...
+ */
 libraryDependencies ++= Dependencies.testing
 /*
  * Project definition...
