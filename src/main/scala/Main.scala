@@ -1,2 +1,13 @@
-@main def entryPoint(): Unit = println:
-  "Welcome from Scala3 and Sbt!"
+/** Entrypoint of the program.
+  */
+object Main:
+  /** The name of the project.
+    */
+  val projectName: String = "scala3-template"
+
+  /** This method is the entry point of the program.
+    * @param args
+    *   unused
+    */
+  def main(args: Array[String]): Unit =
+    println(f"Welcome to $projectName!")
