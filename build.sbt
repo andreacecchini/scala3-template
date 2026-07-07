@@ -4,7 +4,7 @@ lazy val commonSettings = Seq(
   // Linting settings...
   scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all"),
   wartremoverErrors ++= {
-    val excluded = Seq(
+    val excluded = Set(
       Wart.Var,
       Wart.Any
     )
