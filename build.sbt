@@ -9,11 +9,8 @@ lazy val commonSettings = Seq(
     )
     Warts.unsafe.filterNot(excluded.contains)
   },
+  jacocoExcludes := Seq("Main*"),
   libraryDependencies ++= Dependencies.testing
-)
-
-jacocoExcludes := Seq(
-  "Main*"
 )
 
 lazy val root = (project in file("."))
