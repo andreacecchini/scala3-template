@@ -1,6 +1,11 @@
-import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.flatspec.AnyFlatSpec
 
-class MainSuite extends AnyFunSuite with Matchers:
-  test("This test should pass"):
-    true shouldBe true
+class MainSuite extends AnyFlatSpec with Matchers:
+  behavior of "Project"
+
+  it should "have the right name" in:
+    Main.projectName shouldBe "scala3-template"
+
+  it should "greet the user" in:
+    Main.greetingMessage shouldBe s"Welcome to ${Main.projectName}"

@@ -5,6 +5,10 @@ object Main:
     */
   val projectName: String = "scala3-template"
 
+  /** Greet who runs the program.
+    */
+  val greetingMessage: String = s"Welcome to $projectName"
+
   /** This method is the entry point of the program.
     * @param args
     *   unused
