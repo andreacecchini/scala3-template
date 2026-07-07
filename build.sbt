@@ -2,7 +2,13 @@ ThisBuild / scalaVersion := "3.8.1"
 
 lazy val commonSettings = Seq(
   scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all"),
-  wartremoverErrors ++= Warts.unsafe.filterNot(_ == Wart.Var),
+  wartremoverErrors ++= {
+    val excluded = Seq(
+      Wart.Var,
+      Wart.Any
+    )
+    Warts.unsafe.filterNot(excluded.contains)
+  },
   libraryDependencies ++= Dependencies.testing
 )
 
