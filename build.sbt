@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
   .settings(
     name := "scala3-template",
     // Assembly configuration...
-    assembly / assemblyJarName := s"${name.value}-assembly-${version.value}.jar",
+    assembly / assemblyJarName := s"${name.value}-${version.value}-fat.jar",
     assembly / assemblyMergeStrategy := {
       case PathList("META-INF", _*) => MergeStrategy.discard
       case _                        => MergeStrategy.first
