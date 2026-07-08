@@ -37,6 +37,7 @@ jobs:
           WITH_V: true
           WITH_CONVENTIONAL_COMMITS: true
           DEFAULT_BUMP: patch
+          ENABLE_EARLY_STAGE_VERSIONS: true
 
       - name: Create Automatic Release
         env:
