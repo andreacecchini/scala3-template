@@ -9,6 +9,6 @@ This template comes pre-configured with some tools and workflows out of the box:
 * **Branching:** [git flow](https://nvie.com/posts/a-successful-git-branching-model/) model support.
 * **Build System:** `sbt` build definition featuring:
     * **Testing:** [ScalaTest](https://www.scalatest.org/)
-    * **Coverage:** [Scoverage](https://github.com/scoverage/sbt-scoverage)
+    * **Coverage:** [Jacoco](https://github.com/jacoco/jacoco)
     * **Formatting:** [Scalafmt](https://scalameta.org/scalafmt/)
     * **Linting:** [Wartremover](https://www.wartremover.org/)
