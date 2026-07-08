@@ -11,8 +11,10 @@ scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all")
  * Scaladoc configuration...
  */
 Compile / doc / scalacOptions ++= Seq(
-  "-project", name.value,
-  "-project-version", version.value
+  "-project",
+  name.value,
+  "-project-version",
+  version.value
 )
 wartremoverErrors ++= {
   val excluded = Set(Wart.Var, Wart.Any)
