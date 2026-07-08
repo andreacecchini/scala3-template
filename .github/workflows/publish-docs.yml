@@ -1,4 +1,4 @@
-name: Publish Scaladoc
+name: publish scaladoc
 
 on:
   workflow_run:
