@@ -1,0 +1,47 @@
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v5
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+          cache: 'sbt'
+
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
+
+      - name: Build
+        run: sbt build
+
+      - name: Bump version and push tag
+        id: tag_bump
+        uses: anothrNick/github-tag-action@1.71.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INITIAL_VERSION: 0.0.0
+          WITH_V: true
+          WITH_CONVENTIONAL_COMMITS: true
+          DEFAULT_BUMP: patch
+
+      - name: Create Automatic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create ${{ steps.tag_bump.outputs.new_tag }} target/out/jvm/scala-3.8.1/scala3-template/*-fat.jar \
+            --title "Release ${{ steps.tag_bump.outputs.new_tag }}" \
+            --generate-notes
