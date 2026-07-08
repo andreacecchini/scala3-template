@@ -45,7 +45,7 @@ jobs:
         run: |
           gh release create ${{ steps.tag_bump.outputs.new_tag }} target/out/jvm/scala-3.8.1/scala3-template/*-fat.jar \
             --title "Release ${{ steps.tag_bump.outputs.new_tag }}" \
-            --notes "${{ steps.tag_bump.outputs.changelog }}"
+            --generate-notes
 
       - name: Generate Scaladoc with release version
         if: steps.tag_bump.outputs.new_tag != ''
