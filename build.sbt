@@ -7,6 +7,13 @@ version := "0.0.0-SNAPSHOT"
  * Static analisys configuration...
  */
 scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all")
+/*
+ * Scaladoc configuration...
+ */
+Compile / doc / scalacOptions ++= Seq(
+  "-project", name.value,
+  "-project-version", version.value
+)
 wartremoverErrors ++= {
   val excluded = Set(Wart.Var, Wart.Any)
   Warts.unsafe.filterNot(excluded.contains)
