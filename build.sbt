@@ -10,6 +10,7 @@ scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all")
 /*
  * Scaladoc configuration...
  */
+Compile / doc / target := file("./target/api")
 Compile / doc / scalacOptions ++= Seq(
   "-project",
   name.value,

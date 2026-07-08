@@ -1,4 +1,4 @@
-name: deployment
+name: cd.yml
 
 on:
   push:
@@ -47,3 +47,13 @@ jobs:
           gh release create ${{ steps.tag_bump.outputs.new_tag }} target/out/jvm/scala-3.8.1/scala3-template/*-fat.jar \
             --title "Release ${{ steps.tag_bump.outputs.new_tag }}" \
             --generate-notes
+
+      - name: Generate Scaladoc with release version
+        run: sbt 'set version := "${{ steps.tag_bump.outputs.new_tag }}"; doc'
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/api
+          publish_branch: gh-pages
