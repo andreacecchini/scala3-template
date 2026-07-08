@@ -17,5 +17,7 @@ jobs:
           java-version: 25
           distribution: 'temurin'
           cache: 'sbt'
+      - name: Setup sbt
+        uses: sbt/setup-sbt@v1
       - name: Build
         run: sbt check
