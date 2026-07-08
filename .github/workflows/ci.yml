@@ -17,4 +17,5 @@ jobs:
           java-version: 25
           distribution: 'temurin'
           cache: 'sbt'
-
+      - name: Build
+        run: sbt check
