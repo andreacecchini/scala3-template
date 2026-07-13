@@ -1,4 +1,4 @@
-name: cd.yml
+name: Release
 
 on:
   push:
@@ -42,7 +42,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create ${{ steps.tag_bump.outputs.new_tag }} target/out/jvm/scala-3.8.1/scala3-template/*-fat.jar \
+          gh release create ${{ steps.tag_bump.outputs.new_tag }} target/dist/* \
             --title "Release ${{ steps.tag_bump.outputs.new_tag }}" \
             --generate-notes
 

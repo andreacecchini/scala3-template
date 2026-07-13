@@ -12,6 +12,6 @@ addSbtPlugin("org.wartremover" % "sbt-wartremover" % "3.5.7")
  */
 addSbtPlugin("com.eed3si9n" % "sbt-assembly" % "2.3.1")
 /*
- * Sbt-jacoco
+ * Sbt-scoverage
  */
-addSbtPlugin("com.github.sbt" % "sbt-jacoco" % "3.6.0")
+addSbtPlugin("org.scoverage" % "sbt-scoverage" % "2.4.4")
