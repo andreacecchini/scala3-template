@@ -4,7 +4,7 @@ import scala.sys.process.{Process, ProcessLogger}
  * Project configuration...
  */
 ThisBuild / scalaVersion := "3.8.1"
-ThisBuild / version := "0.0.15"
+ThisBuild / version := "0.0.16"
 /*
  * Static analysis configuration...
  */
