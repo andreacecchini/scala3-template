@@ -2,7 +2,7 @@
  * Project configuration...
  */
 ThisBuild / scalaVersion := "3.8.1"
-ThisBuild / version := "0.0.12"
+ThisBuild / version := "0.0.13"
 /*
  * Static analysis configuration...
  */
