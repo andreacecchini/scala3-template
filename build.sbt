@@ -68,7 +68,7 @@ lazy val root = (project in file("."))
     generateReportHtml := {
       val log = streams.value.log
       val inputFile = baseDirectory.value / "docs" / "report.qd"
-      val outputDir = target.value / "api" / "report"
+      val outputDir = target.value / "api"
       IO.createDirectory(outputDir)
       val command = Seq(
         "quarkdown",
