@@ -107,7 +107,8 @@ lazy val root = (project in file("."))
     generateReport := {
       generateReportHtml.value
       generateReportPdf.value
-    } )
+    }
+  )
 /*
  * Run static and dynamic analysis...
  */
