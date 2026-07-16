@@ -10,7 +10,7 @@ ThisBuild / scalacOptions ++= Seq("-Werror", "-Wall", "-Wunused:all")
 /*
  * Scaladoc configuration...
  */
-Compile / doc / target := baseDirectory.value / "target" / "api"
+Compile / doc / target := baseDirectory.value / "target" / "api" / "scaladoc"
 Compile / doc / scalacOptions ++= Seq(
   "-project",
   name.value,
@@ -40,6 +40,9 @@ ThisBuild / coverageHighlighting := true
  * Common libraries between subprojects...
  */
 ThisBuild / libraryDependencies ++= Dependencies.testing
+
+lazy val generateReport = taskKey[Unit]("Generate project report.")
+
 /*
  * Project definition...
  */
@@ -52,6 +55,15 @@ lazy val root = (project in file("."))
     assembly / assemblyMergeStrategy := {
       case PathList("META-INF", _*) => MergeStrategy.discard
       case _                        => MergeStrategy.first
+    },
+    generateReport := {
+      import scala.sys.process._
+      import sbt.IO
+      val log = streams.value.log
+      val inputFile = "docs/report.qd"
+      val outputDir = baseDirectory.value / "target" / "dist"
+      IO.createDirectory(outputDir)
+      s"quarkdown c $inputFile --pdf -o ${outputDir.getAbsolutePath} --out-name report".!
     }
   )
 /*
@@ -61,7 +73,7 @@ addCommandAlias("check", "; fmtCheck; coverage; test")
 /*
  * Run the entirely build lifecycle...
  */
-addCommandAlias("build", "; fmtCheck; assembly; doc")
+addCommandAlias("build", "; fmtCheck; assembly; doc; generateReport")
 /*
  * Format...
  */

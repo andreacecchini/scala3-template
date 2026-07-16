@@ -1,0 +1,15 @@
+.doctype {paged}
+
+.theme layout:{latex}
+
+
+# Sentinel
+
+.center
+    This is the project report for Sentinel!
+
+.mermaid 
+    classDiagram
+        direction LR
+        A --> B
+
