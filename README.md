@@ -12,3 +12,4 @@ This template comes pre-configured with some tools and workflows out of the box:
     * **Coverage:** [Scoverage](https://github.com/scoverage/sbt-scoverage)
     * **Formatting:** [Scalafmt](https://scalameta.org/scalafmt/)
     * **Linting:** [Wartremover](https://www.wartremover.org/)
+    * **Report generation:** `sbt build` produces the Quarkdown report as HTML in `target/api/report` and PDF in `target/dist`

@@ -1,3 +1,5 @@
+import scala.sys.process.{Process, ProcessLogger}
+
 /*
  * Project configuration...
  */
@@ -41,7 +43,13 @@ ThisBuild / coverageHighlighting := true
  */
 ThisBuild / libraryDependencies ++= Dependencies.testing
 
-lazy val generateReport = taskKey[Unit]("Generate project report.")
+/*
+ * Report task keys
+ */
+lazy val generateReportHtml = taskKey[Unit]("Generate the HTML project report.")
+lazy val generateReportPdf = taskKey[Unit]("Generate the PDF project report.")
+lazy val generateReport =
+  taskKey[Unit]("Generate the project report artifacts.")
 
 /*
  * Project definition...
@@ -56,16 +64,50 @@ lazy val root = (project in file("."))
       case PathList("META-INF", _*) => MergeStrategy.discard
       case _                        => MergeStrategy.first
     },
-    generateReport := {
-      import scala.sys.process._
-      import sbt.IO
+    // Report Generation Tasks
+    generateReportHtml := {
       val log = streams.value.log
-      val inputFile = "docs/report.qd"
-      val outputDir = baseDirectory.value / "target" / "dist"
+      val inputFile = baseDirectory.value / "docs" / "report.qd"
+      val outputDir = target.value / "api" / "report"
       IO.createDirectory(outputDir)
-      s"quarkdown c $inputFile --pdf -o ${outputDir.getAbsolutePath} --out-name report".!
-    }
-  )
+      val command = Seq(
+        "quarkdown",
+        "c",
+        inputFile.getAbsolutePath,
+        "-o",
+        outputDir.getAbsolutePath,
+        "--out-name",
+        "report"
+      )
+      val exitCode =
+        Process(command).!(ProcessLogger(log.info(_), log.error(_)))
+      if (exitCode != 0)
+        sys.error("Quarkdown failed while generating HTML report")
+    },
+    generateReportPdf := {
+      val log = streams.value.log
+      val inputFile = baseDirectory.value / "docs" / "report.qd"
+      val outputDir = target.value / "dist"
+      IO.createDirectory(outputDir)
+      val command = Seq(
+        "quarkdown",
+        "c",
+        inputFile.getAbsolutePath,
+        "-o",
+        outputDir.getAbsolutePath,
+        "--out-name",
+        "report",
+        "--pdf"
+      )
+      val exitCode =
+        Process(command).!(ProcessLogger(log.info(_), log.error(_)))
+      if (exitCode != 0)
+        sys.error("Quarkdown failed while generating PDF report")
+    },
+    generateReport := {
+      generateReportHtml.value
+      generateReportPdf.value
+    } )
 /*
  * Run static and dynamic analysis...
  */
