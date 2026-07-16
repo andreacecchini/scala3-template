@@ -7,3 +7,4 @@ metals.sbt
 # Build
 .bsp/
 target/
+quarkdown-output
